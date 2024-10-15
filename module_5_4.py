@@ -1,12 +1,12 @@
 class House:
     house_history = []
-    # def __new__(cls, *args, **kwargs):
-    #     return cls
+    def __new__(cls, *args, **kwargs):
+        cls.house_history.append(args[0])
+        return object.__new__(cls)
 
     def __init__(self, name, number_of_floors):
         self.name = name
         self.number_of_floors = number_of_floors
-        self.house_history.append(name)
 
     def __del__(self):
         print(f'{self.name} снесен, но остается в истории')
@@ -66,20 +66,20 @@ class House:
         if isinstance(other, int):
             return self.__add__(other)
 
-def print_h(cls):
-    for i in cls:
-        print(i.name)
-
 
 h1 = House('ЖК Эльбрус', 10)
+print(House.house_history)
 h2 = House('ЖК Акация', 20)
+print(House.house_history)
 h3 = House('Ромашка', 22)
+print(House.house_history)
+h4 = House('Town at the coast', 3)
 
 print(h1)
 print(h2)
 print(h3)
+print(h4)
 print(House.house_history)
-
 del h1
 print(House.house_history)
 del h2
