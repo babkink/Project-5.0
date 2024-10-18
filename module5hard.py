@@ -50,9 +50,11 @@ class UrTube:
         return self.videos
 
     def get_videos(self, word):
+        movies = []
         for i in self.videos:
             if word.lower() in i.title.lower():
-                return i.title
+                movies.append(i.title)
+        return movies
 
     def watch_video(self, title):
         if self.current_user:
