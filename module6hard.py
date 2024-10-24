@@ -2,7 +2,9 @@ from math import pi
 
 class Figure:
     sides_count = 0
-    __sides = []
+    __sides = [3,4,5]
+    __color = [10, 10, 10]
+    filled = True
     def __init__(self, color, sides: set, filled = True):
         self.__sides = sides
         self.__color = color
@@ -48,6 +50,9 @@ class Figure:
         if self.__is_valid_sides(args):
             self.__sides = list(args)
 
+    def __len__(self):
+        return sum(self.get_sides())
+
 class Circle(Figure):
     sides_count = 1
 
@@ -61,10 +66,6 @@ class Circle(Figure):
     def get_square(self):
         a = self.get_sides()
         return a[0] ** 2 / (4 * pi)
-
-    def __len__(self):
-        len_circle = self.get_sides()
-        return len_circle[0]
 
 class Triangle(Figure):
     sides_count = 3
@@ -84,6 +85,7 @@ class Cube(Figure):
         return side[0] ** 3
 
 circle1 = Circle((200, 200, 100), 10) # (Цвет, стороны)
+triangle1 = Triangle((50, 50, 50), (3, 4, 5))
 cube1 = Cube((222, 35, 130), 6)
 
 # Проверка на изменение цветов:
@@ -100,6 +102,8 @@ print(circle1.get_sides())
 
 # Проверка периметра (круга), это и есть длина:
 print(len(circle1))
+print(len(cube1))
+print(len(triangle1))
 
 # Проверка объёма (куба):
 print(cube1.get_volume())
