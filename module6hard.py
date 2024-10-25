@@ -1,11 +1,10 @@
 from math import pi
-
 class Figure:
     sides_count = 0
-    __sides = [3,4,5]
+    __sides = [3,4]
     __color = [10, 10, 10]
     filled = True
-    def __init__(self, color, sides: set, filled = True):
+    def __init__(self, color, sides, filled = True):
         self.__sides = sides
         self.__color = color
         self.filled = filled
@@ -31,11 +30,11 @@ class Figure:
             self.__color = [r, g, b]
             return self.__color
 
-    def __is_valid_sides(self, *args):
-        for i in range(len(args[0])):
-            if args[0][i] <= 0:
+    def __is_valid_sides(self, ar):
+        for i in range(len(ar)):
+            if ar[i] <= 0:
                 return False
-        if len(args[0]) == self.sides_count:
+        if len(ar) == self.sides_count:
             return True
         else:
             return False
@@ -49,6 +48,8 @@ class Figure:
     def set_sides(self, *args):
         if self.__is_valid_sides(args):
             self.__sides = list(args)
+        else:
+            self.__sides = [1] * self.sides_count
 
     def __len__(self):
         return sum(self.get_sides())
@@ -84,26 +85,9 @@ class Cube(Figure):
         side = self.get_sides()
         return side[0] ** 3
 
-circle1 = Circle((200, 200, 100), 10) # (Цвет, стороны)
-triangle1 = Triangle((50, 50, 50), (3, 4, 5))
-cube1 = Cube((222, 35, 130), 6)
 
-# Проверка на изменение цветов:
-circle1.set_color(55, 66, 77) # Изменится
-print(circle1.get_color())
-cube1.set_color(300, 70, 15) # Не изменится
-print(cube1.get_color())
-
-# Проверка на изменение сторон:
-cube1.set_sides(5, 3, 12, 4, 5) # Не изменится
-print(cube1.get_sides())
-circle1.set_sides(15) # Изменится
-print(circle1.get_sides())
-
-# Проверка периметра (круга), это и есть длина:
-print(len(circle1))
-print(len(cube1))
-print(len(triangle1))
-
-# Проверка объёма (куба):
-print(cube1.get_volume())
+triangle = Triangle((100, 100, 100), 2)
+print(triangle.get_sides())
+print(triangle.sides_count)
+triangle.set_sides(4, 4)
+print(triangle.get_sides())
