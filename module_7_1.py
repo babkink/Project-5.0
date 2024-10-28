@@ -1,7 +1,3 @@
-from itertools import product
-from xml.sax.handler import property_dom_node
-from xmlrpc.client import APPLICATION_ERROR
-
 
 class Product:
     def __init__(self, name: str, weight: float, category: str):
@@ -30,7 +26,7 @@ class Shop():
                 file = open(self.__file_name, 'a')
                 prod_ = f'{str(i)}\n'
                 file.write(prod_)
-                
+                file.close()
 
 shop = Shop()
 p1 = Product('Potato', 50.5, 'Vegetables')
