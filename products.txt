@@ -1,0 +1,4 @@
+Potato, 50.5, Vegetables
+Spaghetti, 3.4, Groceries
+Apple, 10.3, Fruits
+Still water, 0.5, Drinks
